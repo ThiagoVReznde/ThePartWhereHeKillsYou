@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
+  - component: {fileID: 330585548}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -206,7 +207,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 6.43, y: 4.56, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -256,6 +257,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &330585548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8354fe2ca3fb0c282dc18d49df7464, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraFollow
+  player: {fileID: 339806102}
+  offset: {x: 0, y: 0.5, z: -3}
 --- !u!1 &339806098
 GameObject:
   m_ObjectHideFlags: 0
@@ -269,6 +284,7 @@ GameObject:
   - component: {fileID: 339806100}
   - component: {fileID: 339806099}
   - component: {fileID: 339806103}
+  - component: {fileID: 339806104}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -365,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 339806098}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.35357, y: 1.46, z: 0.35357}
+  m_LocalPosition: {x: 2.83, y: 11.19, z: 0.35357}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -398,6 +414,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &339806104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339806098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0337c428d70ebb0cafe3247f5c79582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Player
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -587,6 +615,7 @@ GameObject:
   - component: {fileID: 1036127061}
   - component: {fileID: 1036127060}
   - component: {fileID: 1036127059}
+  - component: {fileID: 1036127064}
   m_Layer: 0
   m_Name: ExcursionFunnel
   m_TagString: ExcursionFunnel
@@ -656,7 +685,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 1a29c4a23f54dad7cac5c3a828c84c44, type: 2}
+  - {fileID: 2100000, guid: 14aee6f24862bff9d96ed7d2938a4ed0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -697,12 +726,31 @@ Transform:
   m_GameObject: {fileID: 1036127058}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 3.53, y: 2.38, z: 0.70712}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalPosition: {x: 3.53, y: 4.25, z: 0.71}
+  m_LocalScale: {x: 3, y: 30, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1036127064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1036127058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5cb05946355cdbdc8f4d18e3265e9cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ExcursionTunnel
+  flowSpeed: 2
+  centeringForce: 30
+  isReversed: 0
+  maxLength: 50
+  obstacleLayers:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &1546403763
 GameObject:
   m_ObjectHideFlags: 0
