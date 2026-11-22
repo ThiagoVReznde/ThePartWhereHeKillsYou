@@ -5,13 +5,27 @@ public class Player : MonoBehaviour
     Rigidbody rb;
     CapsuleCollider cc;
 
+    private ExcursionTunnel currentTunnel;
+    private CapsuleCollider funnelCollider;
+
+    [SerializeField] private Camera firstCamera;
+    [SerializeField] private Camera secondCamera;
+    [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private Camera thirdCamera;
+    [SerializeField] private Camera fourthCamera;
+    [SerializeField] private Camera fifthCamera;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         cc = GetComponent<CapsuleCollider>();
+
+        firstCamera.enabled = true;
+        secondCamera.enabled = false;
+        thirdCamera.enabled = false;
+        fourthCamera.enabled = false;
+        fifthCamera.enabled = false;        
     }
-    private ExcursionTunnel currentTunnel;
-    private CapsuleCollider funnelCollider;
 
     void FixedUpdate()
     {
@@ -31,6 +45,39 @@ public class Player : MonoBehaviour
             currentTunnel = funnel;
             funnelCollider = other as CapsuleCollider;
             rb.useGravity = false;
+        }
+
+        if (other.CompareTag("TriggerCamChange1"))
+        {
+            firstCamera.enabled = !firstCamera.enabled;
+            secondCamera.enabled = !secondCamera.enabled;
+        }
+
+        if (other.CompareTag("TriggerStopExcursion"))
+        {
+            if (currentTunnel != null)
+            {
+                currentTunnel.gameObject.SetActive(false);
+                currentTunnel = null;
+                rb.useGravity = true;
+            }
+
+            if (cameraFollow != null)
+            {
+                cameraFollow.isFollowing = false;
+            }
+        }
+
+        if (other.CompareTag("LaunchPad"))
+        {
+            secondCamera.enabled = !secondCamera.enabled;
+            thirdCamera.enabled = !thirdCamera.enabled;
+        }
+
+        if (other.CompareTag("TriggerCamChange2"))
+        {
+            thirdCamera.enabled = !thirdCamera.enabled;
+            fourthCamera.enabled = !fourthCamera.enabled;
         }
     }
 

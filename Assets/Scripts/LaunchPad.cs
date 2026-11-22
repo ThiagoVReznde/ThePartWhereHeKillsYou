@@ -1,0 +1,44 @@
+using UnityEngine;
+
+public class Launchpad : MonoBehaviour
+{
+    [Header("Configurações de Impulso")]
+    [SerializeField] private float launchForce = 20f;
+    [SerializeField] private bool resetCurrentVelocity = true;
+
+    [SerializeField] private GameObject[] wallsToEnable;
+
+    private void OnTriggerEnter(Collider other)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag("Wall");
+
+        foreach (GameObject obj in objects)
+        {
+            Destroy(obj);
+        }
+
+        Launch(other.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Launch(collision.gameObject);
+    }
+
+    private void Launch(GameObject target)
+    {
+        if (!target.CompareTag("Player")) return;
+
+        Rigidbody rb = target.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            if (resetCurrentVelocity)
+            {
+                rb.linearVelocity = Vector3.zero;
+            }
+
+            rb.useGravity = true;
+            rb.AddForce(transform.up * launchForce, ForceMode.Impulse);
+        }
+    }
+}
