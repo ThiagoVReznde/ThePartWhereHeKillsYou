@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 
     private ExcursionTunnel currentTunnel;
     private CapsuleCollider funnelCollider;
+    private AudioSource tunnelAudio;
 
     [SerializeField] private Camera firstCamera;
     [SerializeField] private Camera secondCamera;
@@ -45,6 +46,12 @@ public class Player : MonoBehaviour
             currentTunnel = funnel;
             funnelCollider = other as CapsuleCollider;
             rb.useGravity = false;
+
+            tunnelAudio = other.GetComponent<AudioSource>();
+            if (tunnelAudio != null && !tunnelAudio.isPlaying)
+            {
+                tunnelAudio.Play();
+            }
         }
 
         if (other.CompareTag("TriggerCamChange1"))

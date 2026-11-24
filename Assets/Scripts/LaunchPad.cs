@@ -8,8 +8,22 @@ public class Launchpad : MonoBehaviour
 
     [SerializeField] private GameObject[] wallsToEnable;
 
+    private AudioSource audioClip;
+
+
+    // nova abordagem pra nao ficar a bagunça das cameras do player
+    private void Start()
+    {
+        audioClip = GetComponent<AudioSource>();
+    }
+
     private void OnTriggerEnter(Collider other)
     {
+        if (audioClip != null && !audioClip.isPlaying)
+        {
+            audioClip.Play();
+        }
+            
         GameObject[] objects = GameObject.FindGameObjectsWithTag("Wall");
 
         foreach (GameObject obj in objects)
